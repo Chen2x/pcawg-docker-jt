@@ -1,0 +1,76 @@
+workflow:
+  name:  pcawg-docker-test
+  version: "0.1.0"
+  source_code: "https://github.com/icgc-dcc/ega-file-transfer-to-collab-jt"
+
+  runtime:
+    docker: null
+
+  execution:
+    constraint: same_host  # other values: 'shared_fs' (not supported yet), 'same_worker'
+    memory: 4g
+    cpu: 2
+
+  input:
+    project_code:
+      type: string
+    ega_study_id:
+      type: string
+    ega_dataset_id:
+      type: string
+    submitter_sample_id:
+      type: string
+    ega_sample_id:
+      type: string
+    icgc_sample_id:
+      type: string
+    submitter:
+      type: string
+    ega_analysis_id:  # null if it's experiment
+      type: string
+    ega_experiment_id:  # null if it's analysis
+      type: string
+    ega_run_id:  # null if it's analysis
+      type: string
+    bundle_type: # experiement or analysis
+      type: string
+    bundle_id:   # either EGAR or EGAX ID
+      type: string
+    library_strategy:
+      type: string
+    ega_metadata_repo:
+      type: string
+    ega_metadata_file_name:
+      type: string
+    ega_metadata_object_id:  # this is the object_id obtained from ICGC service using bundle_id and ega_metadata_file_name as input
+      type: string
+    files:
+      type: array
+      items:
+        type: object
+        properties:
+          ega_file_id:
+            type: string
+          file_name:
+            type: string
+          file_md5sum:
+            type: string
+          object_id:  # this is the object_id obtained from ICGC service using bundle_id and file_name as input
+            type: string
+          idx_file_name:
+            type: string
+          idx_object_id:
+            type: string
+
+  output: null  # we may not need this, does the workflow as a whole need some sort of output? or output from individual tasks is just fine
+
+  #completion_depends_on:  # do we need this? is it all tasks succeeded then it's completed
+  #- completed@upload
+
+  tasks:
+
+
+# A workflow is made up with one or more tools
+# Each tool can have its own docker imagine if desirable
+tools:
+
