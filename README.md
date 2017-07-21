@@ -1,1 +1,1 @@
-Jtracker of PCAWG workflows
+Converting PCAWG workflows into Jtracker workflows
