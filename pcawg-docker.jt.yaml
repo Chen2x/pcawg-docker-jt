@@ -20,3 +20,38 @@ workflow:
 
 
 tools:
+  BWA-Mem:
+    command:
+      input:
+
+  Delly:
+    command:
+      input:
+
+  Sanger:
+    command:
+      input:
+
+  Broad:
+    command:
+      input:
+
+  DKFZ:
+    command:
+      input:
+
+  OxoG:
+    command:
+      input:
+
+  Consensus:
+    command:
+      input:
+
+  BiasFilter:
+    command:
+      input:
+
+  SV-Merge:
+    command:
+      input:
