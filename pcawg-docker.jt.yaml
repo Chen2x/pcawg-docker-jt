@@ -38,7 +38,7 @@ workflow:
       input:
       depends_on:
       - completed@BWA-Mem
-
+``
     DKFZ:
       tool: DKFZ
       input:
@@ -75,6 +75,10 @@ workflow:
 
 
 tools:
+  run-workflow:
+    command: run-workflow.py
+      input:
+
   BWA-Mem:
     command: BWA-Mem.py
       input:
