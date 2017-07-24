@@ -1,7 +1,7 @@
 workflow:
   name:  pcawg-docker-test
   version: "0.1.0"
-  source_code: "https://github.com/icgc-dcc/ega-file-transfer-to-collab-jt"
+  source_code: "https://github.com/Chen2x/pcawg-docker-jt"
 
   runtime:
     docker: null
@@ -76,15 +76,15 @@ workflow:
 
 tools:
   BWA-Mem:
-    command:
+    command: BWA-Mem.py
       input:
 
   Delly:
-    command:
+    command: Delly.py
       input:
 
   Sanger:
-    command:
+    command: Sanger.py
       input:
 
   Broad:
@@ -92,7 +92,7 @@ tools:
       input:
 
   DKFZ:
-    command:
+    command: DKFZ.py
       input:
 
   OxoG:
@@ -100,13 +100,13 @@ tools:
       input:
 
   Consensus:
-    command:
+    command: Consensus.py
       input:
 
   BiasFilter:
-    command:
+    command: BiasFilter.py
       input:
 
   SV-Merge:
-    command:
+    command: SV-Merge.py
       input:
