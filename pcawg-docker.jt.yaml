@@ -17,6 +17,61 @@ workflow:
 
 
   tasks:
+    BWA-Mem:
+      tool: BWA-Mem
+      input:
+
+    Delly:
+      tool: Delly:
+      input:
+      depends_on:
+      -  completed@BWA-Mem
+
+    Sanger:
+      tool: Sanger
+      input:
+      depends_on:
+      - completed@BWA-Mem
+
+    Broad:
+      tool: Broad
+      input:
+      depends_on:
+      - completed@BWA-Mem
+
+    DKFZ:
+      tool: DKFZ
+      input:
+      depends_on:
+      - completed@Delly
+
+    OxoG:
+      tool: OxoG
+      input:
+      depends_on:
+      - completed@Sanger
+      - completed@Broad
+      - completed@DKFZ
+
+    Consensus:
+      tool: Consensus
+      input:
+      depends_on:
+      - completed@OxoG
+
+    BiasFilter:
+      tool: BiasFilter
+      input:
+      depends_on:
+      - completed@consensus
+
+    SV-Merge:
+      tool: SV-Merge
+      input:
+      depends_on:
+      - completed@Sanger
+      - completed@Broad
+      - completed@Delly
 
 
 tools:

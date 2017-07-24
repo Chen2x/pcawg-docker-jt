@@ -1,4 +1,4 @@
+import subprocess
 
 
-
-get_aligned_bams $donor $gnos_or_igcg
+print (subprocess.checkoutput(["run_workflow.sh", "DKFZ", donor, gnos_or_igcg]))
