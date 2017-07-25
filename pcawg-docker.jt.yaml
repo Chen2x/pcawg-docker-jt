@@ -17,100 +17,152 @@ workflow:
 
 
   tasks:
+    download:
+      tool: download
+      input:
+        source:
+        donor:
+        tumor_id:
+        object_id:
+
     BWA-Mem:
-      tool: BWA-Mem
+      tool: run-workflow
       input:
+        workflow: BWA-Mem
+        donor:
+        source:
 
-    Delly:
-      tool: Delly:
-      input:
-      depends_on:
-      -  completed@BWA-Mem
-
-    Sanger:
-      tool: Sanger
-      input:
-      depends_on:
-      - completed@BWA-Mem
-
-    Broad:
-      tool: Broad
-      input:
-      depends_on:
-      - completed@BWA-Mem
-``
-    DKFZ:
-      tool: DKFZ
-      input:
-      depends_on:
-      - completed@Delly
-
-    OxoG:
-      tool: OxoG
-      input:
-      depends_on:
-      - completed@Sanger
-      - completed@Broad
-      - completed@DKFZ
-
-    Consensus:
-      tool: Consensus
-      input:
-      depends_on:
-      - completed@OxoG
-
-    BiasFilter:
-      tool: BiasFilter
-      input:
-      depends_on:
-      - completed@consensus
-
-    SV-Merge:
-      tool: SV-Merge
-      input:
-      depends_on:
-      - completed@Sanger
-      - completed@Broad
-      - completed@Delly
-
+#     Delly:
+#       tool: run-workflow
+#       input:
+#         workflow: Delly
+#         donor:
+#         source:
+#       depends_on:
+#       -  completed@BWA-Mem
+#
+#     Sanger:
+#       tool: run-workflow
+#       input:
+#         workflow: Sanger
+#         donor:
+#         source:
+#       depends_on:
+#       - completed@BWA-Mem
+#
+#     Broad:
+#       tool: run-workflow
+#       input:
+#         workflow: Broad
+#         donor:
+#         source:
+#       depends_on:
+#       - completed@BWA-Mem
+# ``
+#     DKFZ:
+#       tool: run-workflow
+#       input:
+#         workflow: DKFZ
+#         donor:
+#         source:
+#       depends_on:
+#       - completed@Delly
+#
+#     OxoG:
+#       tool: run-workflow
+#       input:
+#         workflow: OxoG
+#         donor:
+#         source:
+#       depends_on:
+#       - completed@Sanger
+#       - completed@Broad
+#       - completed@DKFZ
+#
+#     Consensus:
+#       tool: run-workflow
+#       input:
+#         workflow: Consensus
+#         donor:
+#         source:
+#       depends_on:
+#       - completed@OxoG
+#
+#     BiasFilter:
+#       tool: run-workflow
+#       input:
+#         workflow: BiasFilter
+#         donor:
+#         source:
+#       depends_on:
+#       - completed@consensus
+#
+#     SV-Merge:
+#       tool: run-workflow
+#       input:
+#         workflow: SV-Merge
+#         donor:
+#         source:
+#       depends_on:
+#       - completed@Sanger
+#       - completed@Broad
+#       - completed@Delly
 
 tools:
   run-workflow:
     command: run-workflow.py
       input:
+        workflow:
+          type: string
+        donor:
+          type: string
+        source:
+          type: string
 
-  BWA-Mem:
-    command: BWA-Mem.py
+  download:
+    command: get_icgc_donor.sh
       input:
+        source:
+          type: string
+        donor:
+          type: string
+        tumor_id:
+          type: string
+        object_id:
+          type: string
 
-  Delly:
-    command: Delly.py
-      input:
-
-  Sanger:
-    command: Sanger.py
-      input:
-
-  Broad:
-    command:
-      input:
-
-  DKFZ:
-    command: DKFZ.py
-      input:
-
-  OxoG:
-    command:
-      input:
-
-  Consensus:
-    command: Consensus.py
-      input:
-
-  BiasFilter:
-    command: BiasFilter.py
-      input:
-
-  SV-Merge:
-    command: SV-Merge.py
-      input:
+  # BWA-Mem:
+  #   command: BWA-Mem.py
+  #     input:
+  #
+  # Delly:
+  #   command: Delly.py
+  #     input:
+  #
+  # Sanger:
+  #   command: Sanger.py
+  #     input:
+  #
+  # Broad:
+  #   command:
+  #     input:
+  #
+  # DKFZ:
+  #   command: DKFZ.py
+  #     input:
+  #
+  # OxoG:
+  #   command:
+  #     input:
+  #
+  # Consensus:
+  #   command: Consensus.py
+  #     input:
+  #
+  # BiasFilter:
+  #   command: BiasFilter.py
+  #     input:
+  #
+  # SV-Merge:
+  #   command: SV-Merge.py
+  #     input:

@@ -1,4 +1,7 @@
 import subprocess
 
-
-print (subprocess.checkoutput(["run_workflow.sh", "DKFZ", donor, gnos_or_igcg]))
+try:
+    print (subprocess.checkoutput(["run_workflow.sh", "DKFZ", donor, gnos_or_igcg]))
+except Exception, e:
+    with open('jt.log', 'w') as f: f.write(str(e))
+        sys.exit(1)
