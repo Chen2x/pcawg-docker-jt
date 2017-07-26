@@ -12,101 +12,31 @@ workflow:
     cpu: 2
 
   input:
+    workflow:
+      type: string
+    donor:
+      type: string
+    source:
+      type: string
 
   output: null
 
 
   tasks:
-    download:
-      tool: download
-      input:
-        source:
-        donor:
-        tumor_id:
-        object_id:
+    # download:
+    #   tool: download
+    #   input:
+    #     source:
+    #     donor:
+    #     tumor_id:
+    #     object_id:
 
     BWA-Mem:
-      tool: run-workflow
+      tool:
       input:
-        workflow: BWA-Mem
-        donor:
-        source:
-
-#     Delly:
-#       tool: run-workflow
-#       input:
-#         workflow: Delly
-#         donor:
-#         source:
-#       depends_on:
-#       -  completed@BWA-Mem
-#
-#     Sanger:
-#       tool: run-workflow
-#       input:
-#         workflow: Sanger
-#         donor:
-#         source:
-#       depends_on:
-#       - completed@BWA-Mem
-#
-#     Broad:
-#       tool: run-workflow
-#       input:
-#         workflow: Broad
-#         donor:
-#         source:
-#       depends_on:
-#       - completed@BWA-Mem
-# ``
-#     DKFZ:
-#       tool: run-workflow
-#       input:
-#         workflow: DKFZ
-#         donor:
-#         source:
-#       depends_on:
-#       - completed@Delly
-#
-#     OxoG:
-#       tool: run-workflow
-#       input:
-#         workflow: OxoG
-#         donor:
-#         source:
-#       depends_on:
-#       - completed@Sanger
-#       - completed@Broad
-#       - completed@DKFZ
-#
-#     Consensus:
-#       tool: run-workflow
-#       input:
-#         workflow: Consensus
-#         donor:
-#         source:
-#       depends_on:
-#       - completed@OxoG
-#
-#     BiasFilter:
-#       tool: run-workflow
-#       input:
-#         workflow: BiasFilter
-#         donor:
-#         source:
-#       depends_on:
-#       - completed@consensus
-#
-#     SV-Merge:
-#       tool: run-workflow
-#       input:
-#         workflow: SV-Merge
-#         donor:
-#         source:
-#       depends_on:
-#       - completed@Sanger
-#       - completed@Broad
-#       - completed@Delly
+        workflow: 'BWA-Mem'
+        donor: 'DO46792'
+        source: 'ICGC'
 
 tools:
   run-workflow:
@@ -130,39 +60,3 @@ tools:
           type: string
         object_id:
           type: string
-
-  # BWA-Mem:
-  #   command: BWA-Mem.py
-  #     input:
-  #
-  # Delly:
-  #   command: Delly.py
-  #     input:
-  #
-  # Sanger:
-  #   command: Sanger.py
-  #     input:
-  #
-  # Broad:
-  #   command:
-  #     input:
-  #
-  # DKFZ:
-  #   command: DKFZ.py
-  #     input:
-  #
-  # OxoG:
-  #   command:
-  #     input:
-  #
-  # Consensus:
-  #   command: Consensus.py
-  #     input:
-  #
-  # BiasFilter:
-  #   command: BiasFilter.py
-  #     input:
-  #
-  # SV-Merge:
-  #   command: SV-Merge.py
-  #     input:
